@@ -134,6 +134,7 @@ in separate chunks. The initial page load is ~55 kB gzipped.
 ```
 src/
   config/course.js              ← the only place video IDs live
+  config/site.js                ← attribution (author handle + GitHub link)
   lib/storage.js                ← localStorage wrapper (the entire "backend")
   lib/progress.js               ← all completion maths
   lib/certificate.js            ← client-side PDF export
@@ -143,6 +144,7 @@ src/
     VideoView.jsx               ← player + per-video progress
     YouTubePlayer.jsx           ← IFrame API wrapper + watch-time polling
     CertificateTemplate.jsx     ← the printable certificate
+    AuthorBadge.jsx             ← the muted GitHub link in the navbar
     ProgressBar.jsx
   App.jsx                       ← state, persistence wiring, view switching
   main.jsx

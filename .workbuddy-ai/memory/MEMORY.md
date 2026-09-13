@@ -19,6 +19,9 @@ spec — see `README.md` for the full contract.
 - **All video IDs live only in `src/config/course.js`.** Never hardcode a video ID
   anywhere else — swapping in real footage must be a one-file edit.
 - **`base: './'`** in `vite.config.js` so the build works from a sub-directory.
+- **Attribution lives in `src/config/site.js`** and renders through
+  `components/AuthorBadge.jsx`, which appears in both navbars. Keep it muted and
+  secondary — it must never compete with the brand or the reset control.
 
 ## Architecture map
 - `src/lib/storage.js` — defensive localStorage wrapper (corrupt values never crash).

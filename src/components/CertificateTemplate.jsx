@@ -108,6 +108,7 @@ const CertificateTemplate = forwardRef(function CertificateTemplate(
   return (
     <div
       ref={ref}
+      data-certificate-root=""
       style={{
         width: CERTIFICATE_WIDTH_PX,
         height: CERTIFICATE_HEIGHT_PX,

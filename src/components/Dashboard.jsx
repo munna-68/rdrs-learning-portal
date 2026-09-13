@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { BRAND_NAME, COURSE_MODULES } from '../config/course'
 import { formatClock, formatLongDate } from '../lib/progress'
+import AuthorBadge from './AuthorBadge'
 import ProgressBar from './ProgressBar'
 
 function CheckIcon(props) {
@@ -117,17 +118,20 @@ export default function Dashboard({
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={handleResetClick}
-            className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
-              confirmingReset
-                ? 'bg-red-50 text-red-600 hover:bg-red-100'
-                : 'text-slate-500 hover:bg-slate-200/60 hover:text-slate-700'
-            }`}
-          >
-            {confirmingReset ? 'Tap again to confirm' : 'Switch user / reset'}
-          </button>
+          <div className="flex shrink-0 items-center gap-0.5">
+            <AuthorBadge />
+            <button
+              type="button"
+              onClick={handleResetClick}
+              className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
+                confirmingReset
+                  ? 'bg-red-50 text-red-600 hover:bg-red-100'
+                  : 'text-slate-500 hover:bg-slate-200/60 hover:text-slate-700'
+              }`}
+            >
+              {confirmingReset ? 'Tap again to confirm' : 'Switch user / reset'}
+            </button>
+          </div>
         </div>
       </header>
 

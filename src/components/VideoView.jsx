@@ -1,5 +1,6 @@
 import { COURSE_MODULES } from '../config/course'
 import { formatApproxDuration, formatClock } from '../lib/progress'
+import AuthorBadge from './AuthorBadge'
 import ProgressBar from './ProgressBar'
 import YouTubePlayer from './YouTubePlayer'
 
@@ -39,9 +40,12 @@ export default function VideoView({
             <ChevronLeft className="h-4 w-4" />
             Dashboard
           </button>
-          <p className="ml-auto truncate text-xs text-slate-400">
-            Module {index + 1} of {COURSE_MODULES.length}
-          </p>
+          <div className="ml-auto flex shrink-0 items-center gap-1">
+            <p className="hidden truncate text-xs text-slate-400 sm:inline">
+              Module {index + 1} of {COURSE_MODULES.length}
+            </p>
+            <AuthorBadge />
+          </div>
         </div>
       </header>
 

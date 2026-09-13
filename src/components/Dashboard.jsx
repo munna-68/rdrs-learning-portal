@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { BRAND_NAME, COURSE_MODULES } from '../config/course'
+import { BRAND_NAME, COMPLETION_THRESHOLD, COURSE_MODULES } from '../config/course'
 import { formatClock, formatLongDate } from '../lib/progress'
 import AuthorBadge from './AuthorBadge'
 import ProgressBar from './ProgressBar'
@@ -222,11 +222,15 @@ export default function Dashboard({
               <div className="min-w-0 flex-1">
                 <p className="label-caps">Certificate locked</p>
                 <h2 className="mt-1.5 text-lg font-semibold text-slate-900">
-                  Watch 80% to unlock your certificate
+                  Watch {Math.round(COMPLETION_THRESHOLD * 100)}% to unlock your certificate
                 </h2>
                 <p className="mt-1 text-sm text-slate-500">
-                  You&rsquo;re {percent}% of the way there — {Math.max(0, Math.round((80 - percent) * 10) / 10)}%
-                  to go.
+                  You&rsquo;re {percent}% of the way there —{' '}
+                  {Math.max(
+                    0,
+                    Math.round((COMPLETION_THRESHOLD * 100 - percent) * 10) / 10,
+                  )}
+                  % to go.
                 </p>
                 <ProgressBar value={progress.ratio / 0.8} className="mt-4 max-w-sm" />
               </div>

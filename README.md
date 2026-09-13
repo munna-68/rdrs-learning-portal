@@ -8,6 +8,12 @@ There is no backend, no server, no database and no authentication. Everything ru
 in the browser and persists in `localStorage`, so the built app is a plain folder
 of static files that can be dropped on any static host.
 
+> **Replacing the placeholder videos with the real course content?**
+> Read **[`AGENT_HANDOFF.md`](AGENT_HANDOFF.md)** first. It is the step-by-step
+> guide for whoever does that job — including the one file to edit, how to turn a
+> YouTube link into an ID, how to write the module copy, and how to verify the
+> result with `scripts/check-course.mjs`.
+
 ---
 
 ## Quick start
@@ -49,6 +55,20 @@ Replace each `youtubeId` with the 11-character ID from the real video's watch UR
 (`https://www.youtube.com/watch?v=XXXXXXXXXXX`). Nothing else in the app needs to
 change. You can also edit `title` and `summary` freely, and add or remove modules —
 every screen, the progress maths and the certificate adapt automatically.
+
+Then verify the result:
+
+```bash
+node scripts/check-course.mjs
+```
+
+That confirms every video exists, is **embeddable**, that no video is reused across
+two modules, that ids are unique, and that each `estimatedDuration` matches the
+video's real length. It exits non-zero on failure, so it can gate a build. Run
+`node scripts/check-course.mjs --offline` to check the config shape without any
+network requests.
+
+Full instructions live in [`AGENT_HANDOFF.md`](AGENT_HANDOFF.md).
 
 The IDs currently committed are public, embeddable placeholder videos. They do not
 match the module topics; they exist so the player and watch-time tracking can be

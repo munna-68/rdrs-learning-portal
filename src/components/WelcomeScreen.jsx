@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { BRAND_NAME, COURSE_MODULES, COURSE_TITLE, COURSE_SUBTITLE } from '../config/course'
+import {
+  BRAND_NAME,
+  COMPLETION_THRESHOLD,
+  COURSE_MODULES,
+  COURSE_TITLE,
+  COURSE_SUBTITLE,
+} from '../config/course'
 
 export default function WelcomeScreen({ onStart }) {
   const [value, setValue] = useState('')
@@ -90,7 +96,8 @@ export default function WelcomeScreen({ onStart }) {
         </form>
 
         <p className="mt-6 text-center text-xs text-slate-400">
-          {COURSE_MODULES.length} modules · certificate unlocks at 80% completion
+          {COURSE_MODULES.length} modules · certificate unlocks at{' '}
+          {Math.round(COMPLETION_THRESHOLD * 100)}% completion
         </p>
       </div>
     </div>

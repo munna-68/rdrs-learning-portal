@@ -1,6 +1,3 @@
-import { jsPDF } from 'jspdf'
-import html2canvas from 'html2canvas-pro'
-
 /**
  * Client-side certificate export.
  *
@@ -13,6 +10,11 @@ import html2canvas from 'html2canvas-pro'
  * `html2canvas-pro` (rather than plain html2canvas) is used because it
  * understands modern CSS colour spaces such as `oklch`, which the browser
  * itself may compute for any colour that passes through Tailwind.
+ *
+ * The two PDF libraries are ~600 kB combined and are only ever needed when a
+ * learner actually clicks "Download certificate", so they are pulled in with a
+ * dynamic `import()` and land in their own chunks. The initial page load stays
+ * small; the download just waits a moment for the chunks to arrive.
  */
 
 /** Landscape A4 at 96dpi — the certificate template is authored at this size. */
@@ -42,6 +44,11 @@ export function certificateReference(learnerName, iso) {
 
 export async function downloadCertificatePdf(node, learnerName) {
   if (!node) throw new Error('Certificate template is not mounted.')
+
+  const [{ jsPDF }, { default: html2canvas }] = await Promise.all([
+    import('jspdf'),
+    import('html2canvas-pro'),
+  ])
 
   // Make sure webfonts have settled before rasterising.
   if (document.fonts && typeof document.fonts.ready?.then === 'function') {

@@ -18,6 +18,19 @@ spec — see `README.md` for the full contract.
   certificate is also written with flat hex colours as belt-and-braces.
 - **All video IDs live only in `src/config/course.js`.** Never hardcode a video ID
   anywhere else — swapping in real footage must be a one-file edit.
+- **`AGENT_HANDOFF.md` is the guide for whoever swaps in the real course content.**
+  Keep it accurate: if `course.js` gains a field or the workflow changes, update it
+  in the same change.
+- **`scripts/check-course.mjs` verifies `course.js`** — shape checks plus two network
+  checks that matter: YouTube **oEmbed** (200 only when a video may be embedded, so it
+  catches the silent "plays in a tab, refuses to play in the app" failure) and
+  **`lengthSeconds`** scraped from the watch page (real duration, no API key). Exits
+  non-zero on error. Run it after any content edit.
+- **`COMPLETION_THRESHOLD` is the single definition of the 80% rule.** UI copy
+  interpolates it — never hardcode a percentage into new strings.
+- **Module count is never hardcoded.** Everything derives from `COURSE_MODULES.length`,
+  so adding or removing modules is safe. But summaries are free text and can go stale
+  (m01's mentions "eleven modules").
 - **`base: './'`** in `vite.config.js` so the build works from a sub-directory.
 - **Attribution lives in `src/config/site.js`** and renders through
   `components/AuthorBadge.jsx`, which appears in both navbars. Keep it muted and

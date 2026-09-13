@@ -25,8 +25,12 @@ export const CERTIFICATE_HEIGHT_PX = 794
 export function certificateFileName(learnerName) {
   const slug = String(learnerName || '')
     .trim()
+    // Fold accents so "José Álvarez" becomes "Jose-Alvarez" rather than "Jos-lvarez".
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
     .replace(/\s+/g, '-')
-    .replace(/[^A-Za-z0-9-]/g, '')
+    // Keep letters and digits from any script, so non-Latin names survive intact.
+    .replace(/[^\p{L}\p{N}-]/gu, '')
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '')
   return `${slug || 'Learner'}-Certificate.pdf`

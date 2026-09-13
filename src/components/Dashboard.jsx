@@ -167,7 +167,7 @@ export default function Dashboard({
           <div className="mt-7 flex flex-wrap items-center gap-3 border-t border-slate-100 pt-6">
             <button type="button" className="btn-primary" onClick={() => onOpenModule(nextModule.id)}>
               <PlayIcon className="h-4 w-4" />
-              {completedCount === 0 ? 'Start first module' : 'Continue course'}
+              {percent === 0 ? 'Start first module' : 'Continue course'}
             </button>
             <p className="text-xs text-slate-400">
               Next up · {nextModule.title}

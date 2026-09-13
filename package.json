@@ -1,0 +1,25 @@
+{
+  "name": "rdrs-learning-portal",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "RDRS Learning Portal — a static, client-side course platform with YouTube watch-time tracking and a browser-generated PDF certificate.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "html2canvas-pro": "^1.5.8",
+    "jspdf": "^2.5.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "vite": "^5.4.11"
+  }
+}
